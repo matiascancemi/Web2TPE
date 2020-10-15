@@ -28,6 +28,8 @@
 
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 </head>
 
 <body>
@@ -35,7 +37,7 @@
 <header id="header" class="fixed-top header-inner-pages">
     <div class="container d-flex align-items-center">
 
-      <a href="home" class="logo mr-auto"><img src="https://blog.airtm.com/wp-content/uploads/2019/11/Airtm-Logo-Horizontal-1024x267.png" alt="" class="img-fluid"></a>
+      <a href="home" class="logo mr-auto"><img src="imgs/logo_airtm_header.png" alt="" class="img-fluid"></a>
       
       {include file="menu.tpl"}
 

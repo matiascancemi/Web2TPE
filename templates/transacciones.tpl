@@ -29,19 +29,17 @@
           </div>
         </div>
 
-          <div class="row">
+          <div class="row transacciones">
 
-            {foreach from=$transacciones_s item=transaccion}
+            {foreach key=key from=$transacciones_s item=transaccion}
                     <div class="col-xl-3 col-md-6 d-flex align-items-stretch aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
                       <div class="icon-box">
-                        <div class="icon"><i class="bx bx-file"></i></div>
-                        <h4><a href="ver/transaccion/{$transaccion->id_tns}">{$transaccion->nombre|upper}</a></h4>
+                        <a href="ver/transaccion/{$transaccion->id_tns}"><div class="icono icono-{$transaccion->nombre|lower}"></div></a>
                         <h6>Tipo de Operación: {$transaccion->tipo_de_operacion}</h6>
                         <h6>Saldo Enviado: {$transaccion->saldo_enviar}</h6>
                         <h6>Saldo Recibido: {$transaccion->saldo_recibir}</h6>
                         <h6>Tipo de Cambio: {$transaccion->tipo_cambio}</h6>
-                        <h6>Ganancia: {$transaccion->ganancia}</h6> 
-                        <a href="ver/transaccion/{$transaccion->id_tns}" class="buy-btn">Ver Detalles</a>       
+                        <a href="ver/transaccion/{$transaccion->id_tns}" class="buy-btn">Ver Ganancia</a>       
                         {if isset($smarty.session.USUARIO)}
                         <a href="eliminar/transaccion/{$transaccion->id_tns}" class="buy-btn">Borrar</a>       
                         {/if}

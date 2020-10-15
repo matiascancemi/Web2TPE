@@ -19,11 +19,10 @@
         <form action="editar/transaccion/{$transaccion_s->id_tns}" method="post">
                 <label for="title">Billetera</label>
                 <select id="billeteras" name="id_billetera">
-                {foreach from=$billeteras_s item=billetera}
-                    <option value="{$billetera->id}" {if ({$transaccion_s->id_billetera}=={$billetera->id})}selected{/if}>{$billetera->nombre}</option>
-                {/foreach}
+                  {foreach from=$billeteras_s item=billetera}
+                      <option value="{$billetera->id}" {if ({$transaccion_s->id_billetera}=={$billetera->id})}selected{/if}>{$billetera->nombre}</option>
+                  {/foreach}
                 </select>
-            </div>
             <div class="form-group">
                 <label for="description">Fecha de Transacción</label>
                 <input type="text" class="form-control" name="fecha_tns" value="{$transaccion_s->fecha_tns}" placeholder="Ej: 22/02/1986">

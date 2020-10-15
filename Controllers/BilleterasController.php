@@ -22,14 +22,12 @@ class BilleterasController {
         $this->checkLoggedIn();
         $billetera_id = $params[':ID'];
         $billetera = $this->model->GetBilletera($billetera_id);
-        session_start();
         $this->view->MostrarBilletera($billetera);
     }
     
     public function AgregarBilletera(){
         $this->checkLoggedIn();
         $this->model->AgregarBilletera($_POST['nombre'],$_POST['comision_unica'],$_POST['comision_porcentual']);
-        session_start();
         header("Location: " . BASE_URL . "billeteras");
     }
 
@@ -37,7 +35,6 @@ class BilleterasController {
         $this->checkLoggedIn();
         $billetera_id = $params[':ID'];
         $this->model->EditarBilletera($billetera_id, $_POST['nombre'],$_POST['comision_unica'],$_POST['comision_porcentual']);
-        session_start();
         header("Location: " . BASE_URL . "billeteras");
     }    
 
@@ -45,7 +42,6 @@ class BilleterasController {
         $this->checkLoggedIn();
         $billetera_id = $params[':ID'];
         $this->model->EliminarBilletera($billetera_id);
-        session_start();
         header("Location: " . BASE_URL . "billeteras");
     }
     

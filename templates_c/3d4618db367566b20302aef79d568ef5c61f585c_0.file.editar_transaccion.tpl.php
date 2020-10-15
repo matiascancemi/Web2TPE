@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-05 08:53:19
+/* Smarty version 3.1.34-dev-7, created on 2020-10-15 07:08:40
   from 'C:\xampp\htdocs\TPE_Web2\templates\editar_transaccion.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f7ac2df41f508_56738150',
+  'unifunc' => 'content_5f87d9584f52a8_34501342',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3d4618db367566b20302aef79d568ef5c61f585c' => 
     array (
       0 => 'C:\\xampp\\htdocs\\TPE_Web2\\templates\\editar_transaccion.tpl',
-      1 => 1601878243,
+      1 => 1602738517,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5f7ac2df41f508_56738150 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f87d9584f52a8_34501342 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <main id="main">
@@ -48,13 +48,13 @@ $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_sm
 " method="post">
                 <label for="title">Billetera</label>
                 <select id="billeteras" name="id_billetera">
-                <?php
+                  <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['billeteras_s']->value, 'billetera');
 $_smarty_tpl->tpl_vars['billetera']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['billetera']->value) {
 $_smarty_tpl->tpl_vars['billetera']->do_else = false;
 ?>
-                    <option value="<?php echo $_smarty_tpl->tpl_vars['billetera']->value->id;?>
+                      <option value="<?php echo $_smarty_tpl->tpl_vars['billetera']->value->id;?>
 " <?php ob_start();
 echo $_smarty_tpl->tpl_vars['transaccion_s']->value->id_billetera;
 $_prefixVariable1 = ob_get_clean();
@@ -63,11 +63,10 @@ echo $_smarty_tpl->tpl_vars['billetera']->value->id;
 $_prefixVariable2 = ob_get_clean();
 if (($_prefixVariable1 == $_prefixVariable2)) {?>selected<?php }?>><?php echo $_smarty_tpl->tpl_vars['billetera']->value->nombre;?>
 </option>
-                <?php
+                  <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 </select>
-            </div>
             <div class="form-group">
                 <label for="description">Fecha de Transacción</label>
                 <input type="text" class="form-control" name="fecha_tns" value="<?php echo $_smarty_tpl->tpl_vars['transaccion_s']->value->fecha_tns;?>

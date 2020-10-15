@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-05 06:11:01
+/* Smarty version 3.1.34-dev-7, created on 2020-10-15 07:34:49
   from 'C:\xampp\htdocs\TPE_Web2\templates\editar_billetera.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f7a9cd5d8b1c7_61290451',
+  'unifunc' => 'content_5f87df794e2815_94530911',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8d66ad37beba0bc8f1a4f1bc488b1b6e6767cec5' => 
     array (
       0 => 'C:\\xampp\\htdocs\\TPE_Web2\\templates\\editar_billetera.tpl',
-      1 => 1601871040,
+      1 => 1602738442,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5f7a9cd5d8b1c7_61290451 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f87df794e2815_94530911 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <main id="main">
@@ -66,7 +66,7 @@ $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_sm
                     <button type="submit" class="btn btn-primary">Editar</button>
                     </form>
 
-</div>
+      </div>
     </section>
 
   </main>

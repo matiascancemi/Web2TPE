@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-05 05:41:02
+/* Smarty version 3.1.34-dev-7, created on 2020-10-15 07:12:06
   from 'C:\xampp\htdocs\TPE_Web2\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f7a95ce013837_14529775',
+  'unifunc' => 'content_5f87da262d0a24_50076349',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fd3c3739c0b3059b3b3d151e6927a7adbece0945' => 
     array (
       0 => 'C:\\xampp\\htdocs\\TPE_Web2\\templates\\header.tpl',
-      1 => 1601869258,
+      1 => 1602738724,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:crearbilletera.tpl' => 1,
   ),
 ),false)) {
-function content_5f7a95ce013837_14529775 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f87da262d0a24_50076349 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -56,6 +56,8 @@ function content_5f7a95ce013837_14529775 (Smarty_Internal_Template $_smarty_tpl)
 
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 </head>
 
 <body>
@@ -63,7 +65,7 @@ function content_5f7a95ce013837_14529775 (Smarty_Internal_Template $_smarty_tpl)
 <header id="header" class="fixed-top header-inner-pages">
     <div class="container d-flex align-items-center">
 
-      <a href="home" class="logo mr-auto"><img src="https://blog.airtm.com/wp-content/uploads/2019/11/Airtm-Logo-Horizontal-1024x267.png" alt="" class="img-fluid"></a>
+      <a href="home" class="logo mr-auto"><img src="imgs/logo_airtm_header.png" alt="" class="img-fluid"></a>
       
       <?php $_smarty_tpl->_subTemplateRender("file:menu.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>

@@ -8,11 +8,11 @@
                         <small id="emailHelp" class="form-text text-muted">Nombre</small>
                     </div>
                     <div class="form-group">
-                        <label for="description">Comisión Única</label>
+                        <label for="description">Comisión Única (decimal con punto)</label>
                         <input class="form-control" id="comision_unica" name="comision_unica">
                     </div>
                     <div class="form-group">
-                        <label for="priority">Comisión Porcentual</label>
+                        <label for="priority">Comisión Porcentual (decimal con punto)</label>
                         <input class="form-control" id="comision_porcentual" name="comision_porcentual">
                         </div>
                     <button type="submit" class="btn btn-primary">Agregar</button>

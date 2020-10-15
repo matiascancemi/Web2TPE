@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-10-2020 a las 20:17:39
+-- Tiempo de generación: 15-10-2020 a las 07:35:11
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.2.33
 
@@ -38,7 +38,8 @@ CREATE TABLE `administrador` (
 --
 
 INSERT INTO `administrador` (`id_adm`, `usuario`, `contrasena`) VALUES
-(1, 'administrador', '49bd4844b55f346b627b3fc70aa18c51');
+(1, 'administrador', '49bd4844b55f346b627b3fc70aa18c51'),
+(2, 'tudai', 'e5d695b17106c628c57165d4a03af2f0');
 
 -- --------------------------------------------------------
 
@@ -88,7 +89,10 @@ INSERT INTO `transaccion` (`id_tns`, `id_billetera`, `fecha`, `fecha_tns`, `tipo
 (73, 14, '2020-10-02 05:23:42', '2020-01-10', 'Fondeo', 489.76, 489.81, 1, 0.05),
 (74, 8, '2020-10-02 05:24:30', '2020-01-10', 'Retiro', 1.8, 2, 1.11, -0.1935),
 (75, 8, '2020-10-02 05:25:11', '2020-01-10', 'Retiro', 5.17, 5.85, 1.13, 0.07475),
-(76, 14, '2020-10-02 05:26:02', '2020-01-10', 'Fondeo', 97.64, 97.65, 1, 0.01);
+(76, 14, '2020-10-02 05:26:02', '2020-01-10', 'Fondeo', 97.64, 97.65, 1, 0.01),
+(82, 8, '2020-10-15 07:30:40', '2020-09-09', 'Fondeo', 10.07, 525, 1.14, 514.93),
+(83, 14, '2020-10-15 07:30:53', '2020-01-10', 'Fondeo', 10.07, 97.65, 1.14, 87.58),
+(84, 14, '2020-10-15 07:31:04', '2020-09-02', 'Retiro', 10.07, 11.44, 1.14, 1.37);
 
 --
 -- Índices para tablas volcadas
@@ -121,19 +125,19 @@ ALTER TABLE `transaccion`
 -- AUTO_INCREMENT de la tabla `administrador`
 --
 ALTER TABLE `administrador`
-  MODIFY `id_adm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_adm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `billetera`
 --
 ALTER TABLE `billetera`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `transaccion`
 --
 ALTER TABLE `transaccion`
-  MODIFY `id_tns` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id_tns` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- Restricciones para tablas volcadas

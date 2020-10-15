@@ -34,7 +34,7 @@
                     <button type="submit" class="btn btn-primary">Editar</button>
                     </form>
 
-</div>
+      </div>
     </section>
 
   </main>

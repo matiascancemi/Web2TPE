@@ -31,6 +31,22 @@ h1, h2, h3, h4, h5, h6 {
   padding: 50px 30px;
 }
 
+.icono{
+  height: 75px;
+  width: 100px;
+}
+
+.icono-payoneer{
+  background: url(../../imgs/icono_payoneer.png) 0px -20px;
+  background-size: 100%;
+}
+
+.icono-paypal{
+  background: url(../../imgs/icono_paypal.png) 0px -20px;
+  background-size: 100%;
+}
+
+
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
@@ -117,7 +133,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header.header-scrolled, #header.header-inner-pages {
-  background: rgba(40, 58, 90, 0.9);
+  background: #1783fa;
 }
 
 #header .logo {
@@ -853,6 +869,10 @@ section {
 /*--------------------------------------------------------------
 # Services
 --------------------------------------------------------------*/
+.row.transacciones .col-xl-3{
+  margin-bottom:20px;
+}
+
 .services .icon-box {
   box-shadow: 0px 0 25px 0 rgba(0, 0, 0, 0.1);
   padding: 50px 30px;
@@ -1069,6 +1089,7 @@ section {
 
 .team .member .member-info {
   padding-left: 30px;
+  width:100%;
 }
 
 .team .member h4 {
@@ -1084,6 +1105,7 @@ section {
   padding-bottom: 10px;
   position: relative;
   font-weight: 500;
+  padding:20px;
 }
 
 .team .member span::after {
@@ -1095,6 +1117,16 @@ section {
   background: #cbd6e9;
   bottom: 0;
   left: 0;
+  width:100%;
+}
+
+.ganancia{
+  background:#28a745;
+  color:#fff;
+}
+
+.perdida{
+  background: #dc3545;
 }
 
 .team .member p {
