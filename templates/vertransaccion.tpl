@@ -1,4 +1,5 @@
 {include file="header.tpl"}
+{include file="crearcomentario.tpl"}
 <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -14,14 +15,14 @@
       </div>
     </section><!-- End Breadcrumbs -->
 
-   <section id="team" class="team">
+   <section id="team" class="team contact">
       <div class="container" data-aos="fade-up">
 
         <div class="row">
 
           <div class="col-lg-12">
-            <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
-              <div class="icono icono-{$transaccion->nombre|lower} grande"></div>
+            <div class="member d-flex align-items-start info" data-aos="zoom-in" data-aos-delay="100" data-tns_id="{$transaccion->id_tns}" id="transaccion">
+              <div class="icono icono-{foreach from=$billeteras_s item=billetera}{if ({$transaccion->id_billetera}=={$billetera->id})}{$billetera->nombre|lower}{/if}{/foreach} grande"></div>
               <div class="member-info">
                 <span class="ganancia {if ({$transaccion->ganancia}<=0)}perdida{/if}"><h5>{if ({$transaccion->ganancia}<=0)}Perdida{else}Ganancia{/if}:</h5> {$transaccion->ganancia}</span>
                 <span><h5>Fecha:</h5> {$transaccion->fecha_tns}</span>
@@ -33,6 +34,11 @@
                 <a href="eliminar/transaccion/{$transaccion->id_tns}"  class="buy-btn">Borrar</a>
                 <a href="editar/transaccion/{$transaccion->id_tns}"  class="buy-btn">eDITAR</a>
                 {/if}
+                <div class="lista-comentarios">
+                  <h4><a href="#" data-toggle="modal" data-target=".agregar-comentario" class="boton-agregar-comentario">Agregar Comentario</a></h4>
+                  <ul class="comentarios">
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -42,7 +48,7 @@
 
   </main>
 
-
+<script src="assets/js/comentarios.js"></script>
 
 {include file="footer.tpl"}
 

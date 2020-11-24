@@ -1,7 +1,7 @@
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-        <form action="{BASE_URL}agregar/transaccion" method="post">
+        <form action="agregar/transaccion" method="post">
             <div class="form-group">
                 <label for="title">Billetera</label>
                 <select id="billeteras" name="id_billetera">
@@ -10,9 +10,18 @@
                 {/foreach}
                 </select>
             </div>
+            <div class="form-group moneda">
+            <label for="priority">Seleccione Moneda</label>
+                <select id="monedas" name="monedas">
+                <option value="0">Seleccione una moneda ...</option>
+                {foreach from=$monedas_s item=moneda}
+                    <option value="{$moneda->id}">{$moneda->iso} ({$moneda->nombre})</option>
+                {/foreach}
+                </select>
+        </div>
             <div class="form-group">
                 <label for="description">Fecha de Transacción</label>
-                <input type="text" class="form-control" name="fecha_tns" value="" placeholder="Ej: 22/02/1986">
+                <input type="text" class="form-control" name="fecha_tns" value="">
             </div>
             <div class="form-group">
                 <label for="priority">Tipo de Operación</label>
@@ -38,3 +47,5 @@
         </div>
     </div>
 </div>
+
+<script src="assets/js/banca_local.js"></script>

@@ -23,7 +23,9 @@
                 <div class="icono icono-{$billetera->nombre|lower}"></div>
                     <h6>Comisión Unica:{$billetera->comision_unica} </h6>
                     <h6>Comisión Porcentual: {$billetera->comision_porcentual}</h6>
+                    {if $smarty.session.ROL == 0}
                     <a href="{BASE_URL}eliminar/billetera/{$billetera->id}" class="buy-btn">Borrar</a> 
+                    {/if}
              </div>
              {/foreach}
           

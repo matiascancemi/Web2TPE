@@ -13,11 +13,14 @@
 
       </div>
     </section><!-- End Breadcrumbs -->
-
+    {if isset($smarty.session.ROL) && $smarty.session.ROL == 0}
     <section id="services" class="services">
       <div class="container" data-aos="fade-up">
        
                 <form action="editar/billetera/{$billeteraedit_s->id}" method="post">
+                {if isset($billeteraedit_s->imagen)}
+                  <img src="{$billeteraedit_s->imagen}"/>
+                 {/if} 
                     <div class="form-group">
                         <label for="title">Nombre de Billetera</label>
                         <input class="form-control" id="title" name="nombre" value="{$billeteraedit_s->nombre}">
@@ -36,7 +39,15 @@
 
       </div>
     </section>
+    {else}
+        <section id="services" class="services">
+      <div class="container" data-aos="fade-up">
+       
+                <h3>Usted no tiene permisos para editar billeteras. Consulte al Administrador</h3>
 
+      </div>
+    </section>
+    {/if}
   </main>
 
 
