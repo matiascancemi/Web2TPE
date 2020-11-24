@@ -5,11 +5,8 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6">
-            <h4>Registro de Usuarios</h4>
-            <p>El registro de usuarios actualmente se encuentra cerrado, dejanos tu correo para que podamos avisarte cuando vuelva a activarse!</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Anotarse">
-            </form>
+            <h4>¿Bugs o Sugerencias?</h4>
+            <p>Escribe ahora mismo a sugerencias@soycajero.com y siéntete libre de solicitarnos mejoras, reportar bugs o cualquier inquietud que la pasarela pueda generarte.</p>
           </div>
         </div>
       </div>
@@ -17,7 +14,7 @@
 
     <div class="container footer-bottom clearfix">
       <div class="copyright">
-        &copy; Copyright <strong><span>Operaciones de AirTM</span></strong>. Todos los derechos reservados
+        Este sitio web NO GUARDA RELACIÓN con el Sitio Web Oficial de <strong><span><a href="https://www.airtm.com/es/">Airtm Inc., Airtm Ltd., Airtméxico SA DE CV</a></span></strong>.
       </div>
       <div class="credits">
         Desarrollado por <a href="#">Matías Cancemi</a>
@@ -41,6 +38,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  
 
 </body>
 
