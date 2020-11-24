@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 27-10-2020 a las 00:23:38
--- Versión del servidor: 10.3.24-MariaDB-cll-lve
--- Versión de PHP: 7.3.6
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 24-11-2020 a las 13:47:34
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.2.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `soycajero_db`
+-- Base de datos: `airtm`
 --
 
 -- --------------------------------------------------------
@@ -33,19 +32,46 @@ CREATE TABLE `billetera` (
   `nombre` varchar(20) NOT NULL,
   `comision_unica` float NOT NULL,
   `comision_porcentual` float NOT NULL,
-  `comision_minima` float NOT NULL
+  `comision_minima` float NOT NULL,
+  `imagen` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `billetera`
 --
 
-INSERT INTO `billetera` (`id`, `nombre`, `comision_unica`, `comision_porcentual`, `comision_minima`) VALUES
-(8, 'Paypal', 0.3, 0.055, 0),
-(14, 'Payoneer', 0, 0, 0),
-(18, 'Skrill', 0, 1.45, 0.59),
-(19, 'Neteller', 0, 0.0145, 0.5),
-(20, 'Banca Local', 0, 0, 0);
+INSERT INTO `billetera` (`id`, `nombre`, `comision_unica`, `comision_porcentual`, `comision_minima`, `imagen`) VALUES
+(8, 'Paypal', 0.3, 0.055, 0, NULL),
+(14, 'Payoneer', 0, 0, 0, NULL),
+(18, 'Skrill', 0, 1.45, 0.59, NULL),
+(19, 'Neteller', 0, 0.0145, 0.5, NULL),
+(20, 'Banca Local', 0, 0, 0, NULL),
+(23, 'Plus Cambio', 34234, 23423, 234234, 'imgs/5fbca130a4613.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentarios`
+--
+
+CREATE TABLE `comentarios` (
+  `id` int(11) NOT NULL,
+  `id_tns` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `comentario` varchar(255) NOT NULL,
+  `valoracion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `comentarios`
+--
+
+INSERT INTO `comentarios` (`id`, `id_tns`, `id_usuario`, `comentario`, `valoracion`) VALUES
+(57, 80, 1, 'Su comentario aquí', 3),
+(65, 80, 1, 'Su comentario aquí', 5),
+(84, 84, 1, 'Su comentario aquí', 1),
+(85, 85, 1, 'dsfsdfsdfsdfsd', 4),
+(86, 85, 25, 'Su sdfsdfsfsfd df aquí d fdf', 3);
 
 -- --------------------------------------------------------
 
@@ -104,52 +130,20 @@ CREATE TABLE `transaccion` (
   `tipo_cambio` float NOT NULL,
   `ganancia` float NOT NULL,
   `moneda` int(11) DEFAULT NULL,
-  `valor_de_moneda` float DEFAULT NULL
+  `valor_de_moneda` float DEFAULT NULL,
+  `comentarios` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `transaccion`
 --
 
-INSERT INTO `transaccion` (`id_tns`, `id_billetera`, `id_usuario`, `fecha`, `fecha_tns`, `tipo_de_operacion`, `saldo_enviar`, `saldo_recibir`, `tipo_cambio`, `ganancia`, `moneda`, `valor_de_moneda`) VALUES
-(4, 8, 5, '2020-10-18', '2020-09-02', 'Fondeo', 10.07, 11.44, 1.14, 1.37, NULL, NULL),
-(7, 14, 5, '2020-10-18', '2020-09-02', 'Retiro', 10.07, 11.44, 1.14, 1.37, NULL, NULL),
-(8, 8, 6, '2020-10-19', '2020-10-19', 'Retiro', 10.56, 12, 1.14, 0.4965, NULL, NULL),
-(9, 8, 6, '2020-10-19', '2020-10-19', 'Retiro', 175.11, 200, 1.14, 13.6065, NULL, NULL),
-(10, 8, 6, '2020-10-19', '2020-10-19', 'Retiro', 205.4, 234.6, 1.14, 16.0135, NULL, NULL),
-(11, 8, 6, '2020-10-19', '2020-10-19', 'Retiro', 19.7, 22.45, 1.14, 1.23175, NULL, NULL),
-(12, 8, 6, '2020-10-19', '2020-10-19', 'Retiro', 8.4, 9.53, 1.14, 0.32235, NULL, NULL),
-(13, 8, 6, '2020-10-19', '2020-10-19', 'Retiro', 16.62, 18.92, 1.14, 0.9759, NULL, NULL),
-(14, 8, 6, '2020-10-19', '2020-10-19', 'Fondeo', 10, 10.01, 1, 0.01, NULL, NULL),
-(15, 8, 6, '2020-10-19', '2020-10-19', 'Retiro', 10.56, 12, 1.14, 0.4965, NULL, NULL),
-(16, 8, 6, '2020-10-19', '2020-10-19', 'Retiro', 19.31, 22, 1.14, 1.1965, NULL, NULL),
-(18, 18, 6, '2020-10-19', '2020-10-19', 'Fondeo', 12.1, 12.34, 1.02, -0.35, NULL, NULL),
-(19, 18, 6, '2020-10-19', '2020-10-19', 'Fondeo', 25.1, 25.6, 1.02, -0.09, NULL, NULL),
-(20, 8, 6, '2020-10-19', '2020-10-19', 'Retiro', 131.34, 150, 1.14, 10.1265, NULL, NULL),
-(24, 8, 6, '2020-10-19', '2020-10-19', 'Retiro', 13.18, 15, 1.14, 0.7115, NULL, NULL),
-(25, 8, 6, '2020-10-19', '2020-10-19', 'Fondeo', 19.2, 19.22, 1, 0.02, NULL, NULL),
-(26, 8, 6, '2020-10-20', '2020-10-20', 'Retiro', 18.3, 20.84, 1.14, 1.1103, NULL, NULL),
-(27, 8, 6, '2020-10-20', '2020-10-20', 'Retiro', 70.08, 80, 1.14, 5.2365, NULL, NULL),
-(28, 8, 6, '2020-10-20', '2020-10-20', 'Retiro', 131.34, 150, 1.14, 10.1265, NULL, NULL),
-(29, 8, 6, '2020-10-20', '2020-10-20', 'Retiro', 205.4, 234.6, 1.14, 16.0135, NULL, NULL),
-(32, 8, 6, '2020-10-20', '2020-10-20', 'Retiro', 205.4, 234.6, 1.14, 16.0135, NULL, NULL),
-(34, 8, 6, '2020-10-21', '2020-10-21', 'Retiro', 205.4, 234.6, 1.14, 16.0135, NULL, NULL),
-(35, 14, 6, '2020-10-21', '2020-10-21', 'Fondeo', 48.58, 50, 1.03, 1.42, NULL, NULL),
-(36, 8, 6, '2020-10-22', '2020-10-22', 'Retiro', 175.11, 200, 1.14, 13.6065, NULL, NULL),
-(47, 18, 6, '2020-10-23', '2020-10-23', 'Fondeo', 10, 10.2, 1.02, -0.39, 0, NULL),
-(48, 18, 6, '2020-10-23', '2020-10-23', 'Fondeo', 10.19, 10.39, 1.02, -0.39, 0, NULL),
-(52, 14, 6, '2020-10-23', '2020-10-23', 'Retiro', 258.76, 266.36, 1.03, 7.6, 0, NULL),
-(58, 14, 6, '2020-10-23', '2020-10-23', 'Retiro', 51.35, 52.85, 1.03, 1.5, 0, NULL),
-(69, 8, 6, '2020-10-26', '2020-10-26', 'Retiro', 131.34, 150, 1.14, 10.1265, 0, NULL),
-(70, 14, 6, '2020-10-26', '2020-10-26', 'Retiro', 55.39, 57, 1.03, 1.61, 0, NULL),
-(72, 20, 6, '2020-10-26', '2020-10-26', 'Fondeo', 30184.2, 168.87, 178.74, 1.47969, 111, 180.32),
-(73, 20, 6, '2020-10-26', '2020-10-26', 'Fondeo', 15000, 84.22, 178.1, 1.0369, 111, 180.32),
-(74, 20, 6, '2020-10-26', '2020-10-26', 'Fondeo', 22177.8, 124.65, 177.92, 1.65906, 111, 180.32),
-(75, 8, 6, '2020-10-26', '2020-10-26', 'Retiro', 163.21, 186.4, 1.14, 12.6545, 0, NULL),
-(76, 8, 6, '2020-10-26', '2020-10-26', 'Retiro', 91.96, 105, 1.14, 6.9815, 0, NULL),
-(77, 8, 6, '2020-10-26', '2020-10-26', 'Retiro', 52.67, 60, 1.14, 3.7465, 0, NULL),
-(78, 8, 6, '2020-10-26', '2020-10-26', 'Retiro', 87.85, 100.31, 1.14, 6.65945, 0, NULL),
-(79, 8, 6, '2020-10-26', '2020-10-26', 'Fondeo', 195.49, 195.69, 1, 0.2, 0, NULL);
+INSERT INTO `transaccion` (`id_tns`, `id_billetera`, `id_usuario`, `fecha`, `fecha_tns`, `tipo_de_operacion`, `saldo_enviar`, `saldo_recibir`, `tipo_cambio`, `ganancia`, `moneda`, `valor_de_moneda`, `comentarios`) VALUES
+(80, 18, 1, '2020-11-24', '2020-10-19', 'Retiro', 500, 525, 1.14, -736.25, 0, NULL, NULL),
+(82, 8, 1, '2020-11-24', '2020-10-19', 'Retiro', 500, 525, 1.14, 25, 0, NULL, NULL),
+(83, 18, 1, '2020-11-24', '2020-10-19', 'Retiro', 205.4, 234.6, 1, 29.2, 0, NULL, NULL),
+(84, 20, 1, '2020-11-24', '2020-10-19', 'Fondeo', 1000, 100, 100, -900, 111, 148.93, NULL),
+(85, 8, 25, '2020-11-24', '2020-10-19', 'Fondeo', 10.07, 11.44, 1, 1.37, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -167,7 +161,7 @@ CREATE TABLE `usuarios` (
   `contrasena` varchar(40) NOT NULL,
   `referido` varchar(50) DEFAULT NULL,
   `rol` int(11) NOT NULL DEFAULT 1,
-  `activo` int(11) NOT NULL DEFAULT 0
+  `activo` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -175,17 +169,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_adm`, `fecha`, `nombre`, `apellido`, `email`, `usuario`, `contrasena`, `referido`, `rol`, `activo`) VALUES
-(1, '0000-00-00 00:00:00', '', '', '', 'administrador', '49bd4844b55f346b627b3fc70aa18c51', NULL, 0, 1),
-(5, '0000-00-00 00:00:00', '', '', '', 'tudai', 'e5d695b17106c628c57165d4a03af2f0', NULL, 1, 1),
-(6, '0000-00-00 00:00:00', '', '', '', 'matias', '49bd4844b55f346b627b3fc70aa18c51', NULL, 1, 1),
-(7, '0000-00-00 00:00:00', '', '', '', 'hyips', 'c56dab375f929283a6475373c185c8a9', NULL, 1, 1),
-(8, '0000-00-00 00:00:00', '', '', '', 'tonybuet', '76efae6db6e6701714bc57b3b695aae4', NULL, 1, 1),
-(12, '2020-10-21 23:36:50', 'Soledad Noelia', 'Ravazzoli', 'solravazzoli@gmail.com', 'soledad', '49bd4844b55f346b627b3fc70aa18c51', '6', 1, 0),
-(13, '2020-10-22 10:49:41', 'Jose', 'Vanegas', 'serviciosonlineparati@gmail.com', 'elprofe', '4f7dcdc61fa99085bba0dd3178fea5ea', NULL, 1, 1),
-(14, '2020-10-22 11:48:32', 'Esteban', 'Rojas', 'steve2014kt@gmail.com', 'Steve7fx', '19bf69c2c25dad41534eb04af0a723bd', NULL, 1, 1),
-(15, '2020-10-23 13:23:05', 'Emmanuel', 'Gatica', 'emmagatica91@gmail.com', 'emmagatica91', '4d0ee81128465f6fc1d674fec76e19f5', NULL, 1, 1),
-(16, '2020-10-23 17:08:52', 'Sergio Germán', 'Chironi', 'serchiron@gmail.com', 'chiro', 'b9cb7e04f2c6ff820fcf4ddc48ba05ba', NULL, 1, 1),
-(17, '2020-10-26 16:32:31', 'Ramiro', 'Garcia', 'ramirogarcia10@gmail.com', 'ramirogarcia10', '9536c0f8b8ce7b299ccf75782342cf10', NULL, 1, 1);
+(1, '0000-00-00 00:00:00', 'Matias', 'Cancemi', 'algo@nada.com', 'administrador', '49bd4844b55f346b627b3fc70aa18c51', NULL, 0, 1),
+(25, '2020-11-24 06:27:56', 'Matias', 'Cancemi', 'matiasexequielcancemi@gmail.com', 'tudai', 'e5d695b17106c628c57165d4a03af2f0', NULL, 0, 1);
 
 --
 -- Índices para tablas volcadas
@@ -196,6 +181,13 @@ INSERT INTO `usuarios` (`id_adm`, `fecha`, `nombre`, `apellido`, `email`, `usuar
 --
 ALTER TABLE `billetera`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_tns` (`id_tns`);
 
 --
 -- Indices de la tabla `monedas`
@@ -225,7 +217,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `billetera`
 --
 ALTER TABLE `billetera`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT de la tabla `monedas`
@@ -237,24 +235,30 @@ ALTER TABLE `monedas`
 -- AUTO_INCREMENT de la tabla `transaccion`
 --
 ALTER TABLE `transaccion`
-  MODIFY `id_tns` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id_tns` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_adm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_adm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
+-- Filtros para la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD CONSTRAINT `id_tns` FOREIGN KEY (`id_tns`) REFERENCES `transaccion` (`id_tns`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
 -- Filtros para la tabla `transaccion`
 --
 ALTER TABLE `transaccion`
   ADD CONSTRAINT `transaccion_ibfk_1` FOREIGN KEY (`id_billetera`) REFERENCES `billetera` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transaccion_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_adm`);
+  ADD CONSTRAINT `transacciones_usuarios` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_adm`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
