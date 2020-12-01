@@ -49,7 +49,7 @@
 
           {foreach from=$billeteras_s item=billetera}
 
-          <li class="{if ({$billetera->id}=={$id_billetera})}filter-active{/if}"><a href="transacciones/billetera/{$billetera->id}" class="btn-get-started scrollto">{$billetera->nombre}</a></li>
+          <li class="{if ({$billetera->id}=={$id_billetera})}filter-active{/if}"><a href="transacciones?billetera={$billetera->id}" class="btn-get-started scrollto">{$billetera->nombre}</a></li>
 
           {/foreach}
 
@@ -71,7 +71,11 @@
 
                       <div class="info">
 
-                        <a href="ver/transaccion/{$transaccion->id_tns}"><div class="icono icono-{foreach from=$billeteras_s item=billetera}{if ({$transaccion->id_billetera}=={$billetera->id})}{$billetera->nombre|lower}{/if}{/foreach}"></div></a>
+                        <a href="transaccion?id={$transaccion->id_tns}">{foreach from=$billeteras_s item=billetera}
+                          {if ({$billetera->id}=={$transaccion->id_billetera})}
+                            <img src="{$billetera->imagen}"
+                          {/if} 
+                        {/foreach}"></a>
 
                           <div><h6>Fecha</h6> <span>{$transaccion->fecha_tns}</span></div>
 
@@ -97,9 +101,9 @@
 
                         <div class="{if ({$transaccion->ganancia}<=0)}perdida{else}ganancia{/if}"><h6>{if ({$transaccion->ganancia}< 0)}Perdida:{elseif ({$transaccion->ganancia}==0)}No aplica{else}Ganancia:{/if}</h6> </span>{if ({$transaccion->ganancia}!=0)} $ {$transaccion->ganancia|string_format:"%.2f"}{/if}</span></div>
 
-                        <div class="btn-detalles"><a href="ver/transaccion/{$transaccion->id_tns}" class="btn btn-primary">Detalles</a></div>
+                        <div class="btn-detalles"><a href="transaccion?id={$transaccion->id_tns}" class="btn btn-primary">Detalles</a></div>
 
-                        <div class="btn-borrar"><a href="eliminar/transaccion/{$transaccion->id_tns}" class="btn btn-danger">Borrar</a></div>
+                        <div class="btn-borrar"><a href="eliminar?id={$transaccion->id_tns}" class="btn btn-danger">Borrar</a></div>
 
                       </div>
 
@@ -107,6 +111,11 @@
 
               {/foreach}
 
+            </div>
+
+            
+            <div class="paginador">
+            <a href="transacciones?pagina=2">Pagina 2</a>
             </div>
 
       </div>

@@ -78,9 +78,9 @@ class AdministradoresController {
         $this->view->GestionarUsuarios($Usuarios, $billeteras);
     }
 
-    function ConvertirAdmin($params = null){
+    function ConvertirAdmin(){
         $this->checkLoggedInAdmin();
-        $id_usuario = $params[':ID'];
+        $id_usuario = $_GET['id'];
         $roldeusuario = $this->model->ChequeoRol($id_usuario);
         foreach ($roldeusuario as $rol) {
             if ($rol==1){
@@ -89,14 +89,16 @@ class AdministradoresController {
                 $valor = 1;
             }
         }
-        $_SESSION["ROL"] = $valor;
+        if ($id_usuario == $_SESSION["ID"]){
+            $_SESSION["ROL"] = $valor;
+        }
         $this->model->ConvertirAdmin($id_usuario, $valor);
         header("Location: " . BASE_URL . "usuarios");
     }
 
-    function EliminarUsuario($params = null){
+    function EliminarUsuario(){
         $this->checkLoggedInAdmin();
-        $id_usuario = $params[':ID'];
+        $id_usuario = $_GET['id'];
         $this->model->EliminarUsuario($id_usuario);
         header("Location: " . BASE_URL . "usuarios");
     }    
@@ -121,7 +123,7 @@ class AdministradoresController {
     }
 
     function checkLoggedInAdmin() {
-        if ($_SESSION['ROL'] != 0){
+        if (!isset($_SESSION['USUARIO']) || ($_SESSION['ROL'] != 0)){
             header("Location: " . BASE_URL . 'transacciones');
             die;
         }

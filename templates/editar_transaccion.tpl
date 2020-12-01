@@ -16,7 +16,7 @@
     <section id="services" class="services">
       <div class="container" data-aos="fade-up">
 
-        <form action="editar/transaccion/{$transaccion_s->id_tns}" method="post">
+        <form action="editar" method="post">
                 <label for="title">Billetera</label>
                 <select id="billeteras" name="id_billetera">
                   {foreach from=$billeteras_s item=billetera}
@@ -47,6 +47,7 @@
                 <input class="form-control" id="tipo_cambio" name="tipo_cambio" value="{$transaccion_s->tipo_cambio}">
             </div>                        
             <button type="submit" class="btn btn-primary">Actualizar</button>
+            <input type="hidden" value="{$transaccion_s->id_tns}" name="id_tns">
         </form>
 
       </div>

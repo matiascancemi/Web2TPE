@@ -13,12 +13,20 @@ class TransaccionesModel
         $this->db = new PDO('mysql:host=' . $localhost . ';dbname=' . $name . ';charset=utf8', $user, $pass);
     }
 
-    public function UltimasTransacciones()
+    public function ContarUltimasTransacciones()
     {
-        $sentencia = $this->db->prepare("SELECT * FROM transaccion INNER JOIN usuarios ON transaccion.id_usuario = usuarios.id_adm INNER JOIN comentarios ON comentarios.id_tns = transaccion.id_tns");
-        $sentencia->execute(array());
-        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+        $sentencia = $this->db->prepare("SELECT * FROM transaccion INNER JOIN usuarios ON transaccion.id_usuario = usuarios.id_adm");
+        $sentencia->execute();
+        $total_transacciones = $sentencia->rowCount();
+        return $total_transacciones;
     }
+
+    public function UltimasTransacciones($desde, $hasta)
+    {
+        $sentencia = $this->db->prepare("SELECT * FROM transaccion INNER JOIN usuarios ON transaccion.id_usuario = usuarios.id_adm LIMIT $desde,$hasta");
+        $sentencia->execute();
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }    
 
     public function GetTransacciones($usuario)
     {
@@ -93,7 +101,7 @@ class TransaccionesModel
     public function EditarTransaccion($id_tns, $id_billetera, $id_usuario, $fecha, $fecha_tns, $tipo_de_operacion, $saldo_enviar, $saldo_recibir, $tipo_cambio, $ganancia, $moneda)
     {
         $sentencia = $this->db->prepare("UPDATE transaccion SET id_billetera=?,id_usuario=?,fecha=?,fecha_tns=?,tipo_de_operacion=?,saldo_enviar=?,saldo_recibir=?,tipo_cambio=?,ganancia=?,moneda=? WHERE id_tns=?");
-        $sentencia->execute(array($id_billetera, $id_usuario, $fecha, $fecha_tns, $tipo_de_operacion, $saldo_enviar, $saldo_recibir, $tipo_cambio, $ganancia, $id_tns, $moneda));
+        $sentencia->execute(array($id_billetera, $id_usuario, $fecha, $fecha_tns, $tipo_de_operacion, $saldo_enviar, $saldo_recibir, $tipo_cambio, $ganancia, $moneda, $id_tns));
     }
 
 

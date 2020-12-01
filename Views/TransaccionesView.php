@@ -23,10 +23,11 @@ class TransaccionesView{
 
     }
 
-    function InicioInvitado($transacciones, $billeteras, $monedas){
+    function InicioInvitado($transacciones, $billeteras, $monedas, $cant_paginas){
         $smarty = new Smarty();
         $smarty->assign('titulo_s', $this->title);
         $smarty->assign('transacciones_s', $transacciones);
+        $smarty->assign('cant_paginas', $cant_paginas);
         $smarty->assign('billeteras_s', $billeteras);
         $smarty->assign('fecha_s', $this->fecha);
         $smarty->assign('monedas_s', $monedas);

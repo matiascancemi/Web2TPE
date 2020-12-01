@@ -31,8 +31,8 @@
                 <span><h5>Saldor a Recibir:</h5> {$transaccion->saldo_recibir}</span>
                 <span><h5>Tipo de Cambio:</h5> {$transaccion->tipo_cambio}</span>
                 {if isset($smarty.session.USUARIO)}
-                <a href="eliminar/transaccion/{$transaccion->id_tns}"  class="buy-btn">Borrar</a>
-                <a href="editar/transaccion/{$transaccion->id_tns}"  class="buy-btn">eDITAR</a>
+                <a href="eliminar?id={$transaccion->id_tns}"  class="buy-btn">Borrar</a>
+                <a href="editar?id={$transaccion->id_tns}"  class="buy-btn">eDITAR</a>
                 {/if}
                 <div class="lista-comentarios">
               {if isset($smarty.session.USUARIO)}<h4><a href="#" data-toggle="modal" data-target=".agregar-comentario" class="boton-agregar-comentario">Agregar Comentario</a></h4>{/if}

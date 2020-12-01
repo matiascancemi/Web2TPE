@@ -17,29 +17,40 @@ class TransaccionesController {
 
 
     function InicioInvitado(){
-        $transacciones = $this->model->UltimasTransacciones();
+        $contar_transacciones = $this->model->ContarUltimasTransacciones();
+        $transacciones_por_pagina = 4;
+        $paginas = $contar_transacciones/$transacciones_por_pagina;
+        $cant_paginas = ceil($paginas);
+        if (isset($_GET["pagina"])){
+            $desde = (($_GET["pagina"]-1)*$transacciones_por_pagina);
+        }else{
+            $desde = 0;
+        }
+        $hasta = $transacciones_por_pagina + $desde;
+        $transacciones = $this->model->UltimasTransacciones($desde, $hasta);
         $billeteras = $this->model1->GetBilleteras();
         $monedas = $this->model1->GetMonedas();
-        $this->view->InicioInvitado($transacciones, $billeteras, $monedas);
+        $this->view->InicioInvitado($transacciones, $billeteras, $monedas, $cant_paginas);
     }
 
-    function Home($params = null){
+    function Home(){
         $this->checkLoggedIn();
-        if (isset($params[':ID'])){
-            $id_billetera = $params[':ID'];
+        if (isset($_GET['billetera'])){
+            $id_billetera = $_GET['billetera'];
+            $transacciones = $this->model->GetTransaccionesPorBilletera($id_billetera, $_SESSION["ID"]);
         }else{
             $id_billetera = null;
+            $transacciones = $this->model->GetTransacciones($_SESSION["ID"]);
         }
-        $transacciones = $this->model->GetTransacciones($_SESSION["ID"]);
         $billeteras = $this->model1->GetBilleteras();
         $monedas = $this->model1->GetMonedas();
         $this->view->ShowHome($transacciones, $billeteras, $id_billetera, $monedas);
     }
 
-    function HomeAdmin($params = null){
+    function HomeAdmin(){
         $this->checkLoggedIn();
-        if (isset($params[':ID'])){
-            $id_billetera = $params[':ID'];
+        if (isset($_GET['billetera'])){
+            $id_billetera = $_GET['billetera'];
         }else{
             $id_billetera = null;
         }
@@ -49,9 +60,9 @@ class TransaccionesController {
         $this->view->ShowHome($transacciones, $billeteras, $id_billetera, $monedas);
     }   
     
-    function VerTodasLasTransacciones($params = null){
-        if (isset($params[':ID'])){
-            $id_billetera = $params[':ID'];
+    function VerTodasLasTransacciones(){
+        if (isset($_GET['billetera'])){
+            $id_billetera = $_GET['billetera'];
         }else{
             $id_billetera = null;
         }
@@ -62,23 +73,30 @@ class TransaccionesController {
     }       
 
 
-
-    public function VerTransaccionPorBilletera($params = null){
+    public function VerTransaccionPorBilletera(){
         $this->checkLoggedIn();
-        $id_billetera = $params[':ID'];
+        if (isset($_GET['billetera'])){
+            $id_billetera = $_GET['billetera'];
+        }else{
+            $id_billetera = null;
+        }
         $transacciones = $this->model->GetTransaccionesPorBilletera($id_billetera, $_SESSION["ID"]);
         $billeteras = $this->model1->GetBilleteras();
         $monedas = $this->model1->GetMonedas();
         $this->view->ShowHome($transacciones, $billeteras, $id_billetera, $monedas);
     }   
 
-    public function VerTransaccion($params = null){
+    public function VerTransaccion(){
         //$this->checkLoggedIn();
-        $Transaccion_id = $params[':ID'];
-        $transaccion = $this->model->GetTransaccionAdmin($Transaccion_id);
-        $billeteras = $this->model1->GetBilleteras();
-        $monedas = $this->model1->GetMonedas();
-        $this->view->MostrarTransaccion($transaccion, $billeteras, $monedas);
+        if (isset($_GET['id'])){
+            $Transaccion_id = $_GET['id'];
+            $transaccion = $this->model->GetTransaccionAdmin($Transaccion_id);
+            $billeteras = $this->model1->GetBilleteras();
+            $monedas = $this->model1->GetMonedas();
+            $this->view->MostrarTransaccion($transaccion, $billeteras, $monedas);
+        }else{
+            header("Location: ". BASE_URL . "home");
+        }
     }
 
     
@@ -119,9 +137,9 @@ class TransaccionesController {
     }
 
 
-    public function FormularioEditarTransaccion($params = null){
+    public function FormularioEditarTransaccion(){
         $this->checkLoggedIn();
-        $Transaccion_id = $params[':ID'];
+        $Transaccion_id = $_GET["id"];
         $id_usuario = $_SESSION["ID"];
         if ($this->model->GetTransaccion($Transaccion_id, $id_usuario)){
             $transaccion = $this->model->GetTransaccion($Transaccion_id, $id_usuario);
@@ -134,20 +152,20 @@ class TransaccionesController {
     }
 
 
-    public function EditarTransaccion($params = null){
+    public function EditarTransaccion(){
         $this->checkLoggedIn();
-        $id_tns = $params[':ID'];
+        $id_tns = $_POST["id_tns"];
         $fechadehoy =  date('Y-m-d H:i:s');
         $fecha_tns = date("Y-m-d", strtotime($_POST['fecha_tns']));
-        $ganancia = 0;
+        $ganancia = $this->CalcularGanancia($_POST['id_billetera'],$_POST['tipo_de_operacion'],$_POST['saldo_enviar'], $_POST['saldo_recibir']);
         $this->model->EditarTransaccion($id_tns, $_POST['id_billetera'],$_SESSION["ID"],$fechadehoy,$fecha_tns,$_POST['tipo_de_operacion'],$_POST['saldo_enviar'],$_POST['saldo_recibir'],$_POST['tipo_cambio'],$ganancia,$ganancia,$_POST['moneda']);
         header("Location: " . BASE_URL . "home");
     }    
 
 
-    public function EliminarTransaccion($params = null){
+    public function EliminarTransaccion(){
         $this->checkLoggedIn();
-        $Transaccion_id = $params[':ID'];
+        $Transaccion_id = $_GET['id'];
         $id_usuario = $_SESSION["ID"];
         if ($this->model->EliminarTransaccion($Transaccion_id, $id_usuario)){
             $this->model->EliminarTransaccion($Transaccion_id, $id_usuario);

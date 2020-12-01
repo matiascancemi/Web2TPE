@@ -21,38 +21,13 @@
 
 </section>
 
-<section id="about" class="about">
-      <div class="container aos-init aos-animate" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>¿Qué es SoyCajero?</h2>
-          SoyCajero.com es una plataforma creada para facilitar el control, historial y estadísticas de usuarios cajeros de AirTM.
-        </div>
-
-        <div class="row content">
-          <div class="col-lg-6">
-            <p>
-              Algunas características con las que ya contamos.
-            </p>
-            <ul>
-              <li><i class="fas fa-handshake"></i> Control de Transacciones Realizadas como Cajero de AirTM</li>
-              <li><i class="far fa-money-bill-alt"></i> Estadísticas de Ganancias.</li>
-              <li><i class="fas fa-wallet"></i> Billeteras Electrónicas con Comisiones Precargadas.</li>
-            </ul>
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0">
-            <p>
-              <h5><i class="fas fa-code"></i> Fase Beta</h5>
-              El sitio web se encuenta en la versión Beta. Se irán desarrollando nuevas características que se habilitarán para todos los usuarios registrados.
-            </p>
-            <a href="registro" class="btn-learn-more">Solicitar Registro</a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section>
+<br>
+    <section id="about" class="about">
+    <div class="container">
+    <div class="section-title">
+    <h2>Últimas Transacciones</h2>
+    
+  </div>
     <div class="row transacciones contact">
 
     {foreach key=key from=$transacciones_s item=transaccion}
@@ -90,7 +65,7 @@
 
                 <div class="{if ({$transaccion->ganancia}<=0)}perdida{else}ganancia{/if}"><h6>{if ({$transaccion->ganancia}< 0)}Perdida:{elseif ({$transaccion->ganancia}==0)}No aplica{else}Ganancia:{/if}</h6> </span>{if ({$transaccion->ganancia}!=0)} $ {$transaccion->ganancia|string_format:"%.2f"}{/if}</span></div>
 
-                <div class="btn-detalles"><a href="ver/transaccion/{$transaccion->id_tns}" class="btn btn-primary">Detalles</a></div>
+                <div class="btn-detalles"><a href="transaccion?id={$transaccion->id_tns}" class="btn btn-primary">Detalles</a></div>
 
               </div>
 
@@ -99,7 +74,20 @@
       {/foreach}
 
     </div>
-
+      <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      {if ({$smarty.get.pagina} >= $cant_paginas)}
+        <li class="page-item"><a class="page-link" href="?pagina={$smarty.get.pagina-1}">Anterior</a></li>
+      {/if}
+      {for $foo=1 to $cant_paginas}
+      <li class="page-item {if ({$smarty.get.pagina == $foo})}active{/if}"><a class="page-link" href="?pagina={$foo}">{$foo}</a></li>
+      {/for}
+      {if ({$smarty.get.pagina} < $cant_paginas)}
+        <li class="page-item"><a class="page-link" href="?pagina={$smarty.get.pagina+1}">Siguiente</a></li>
+      {/if}
+    </ul>
+  </nav>
+  </div>
     </section>
 
 

@@ -39,23 +39,16 @@ class BilleterasController {
 
 
     public function GetBilletera($params = null){
-
         $this->checkLoggedIn();
-
         $billetera_id = $params[':ID'];
-
         $billetera = $this->model->GetBilletera($billetera_id);
-
         $monedas = $this->model->GetMonedas();
-
         $this->view->MostrarBilletera($billetera, $monedas);
-
     }
 
     
 
     public function AgregarBilletera(){
-
         $this->checkLoggedInAdmin();
         if($_FILES['input_name']['type'] == "image/jpg" || $_FILES['input_name']['type'] == "image/jpeg" 
                 || $_FILES['input_name']['type'] == "image/png" ) {
@@ -130,9 +123,3 @@ class BilleterasController {
 
 
 }
-
-
-
-
-
-?>

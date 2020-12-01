@@ -33,50 +33,41 @@
     $r->addRoute("registro", "GET", "AdministradoresController", "CrearUsuarioFormulario");
     $r->addRoute("registro", "POST", "AdministradoresController", "CrearUsuario");
     $r->addRoute("usuarios", "GET", "AdministradoresController", "ListarUsuarios");
-    $r->addRoute("usuarios/admin/:ID", "GET", "AdministradoresController", "ConvertirAdmin");
-    $r->addRoute("usuarios/eliminar/:ID", "GET", "AdministradoresController", "EliminarUsuario");
+    $r->addRoute("usuarios/admin", "GET", "AdministradoresController", "ConvertirAdmin");
+    $r->addRoute("usuarios/eliminar", "GET", "AdministradoresController", "EliminarUsuario");
 
 
     //TRANSACCIONES
-    if (isset($_SESSION["ROL"])&&($_SESSION["ROL"])==0){
+    if (isset($_SESSION["ROL"]) && isset($_SESSION["ROL"])==0){
         $r->addRoute("transacciones", "GET", "TransaccionesController", "HomeAdmin");
      }else{
         $r->addRoute("transacciones", "GET", "TransaccionesController", "Home");
      }
      $r->addRoute("transacciones/todas", "GET", "TransaccionesController", "VerTodasLasTransacciones");
-    $r->addRoute("transacciones/billetera/:ID", "GET", "TransaccionesController", "VerTransaccionPorBilletera");
-    $r->addRoute("ver/transaccion/:ID", "GET", "TransaccionesController", "VerTransaccion");
+    $r->addRoute("transacciones", "GET", "TransaccionesController", "VerTransaccionPorBilletera");
+    $r->addRoute("transaccion", "GET", "TransaccionesController", "VerTransaccion");
     $r->addRoute("agregar/transaccion", "POST", "TransaccionesController", "AgregarTransaccion");
-    $r->addRoute("eliminar/transaccion/:ID", "GET", "TransaccionesController", "EliminarTransaccion");
-    $r->addRoute("editar/transaccion/:ID", "GET", "TransaccionesController", "FormularioEditarTransaccion");
-    $r->addRoute("editar/transaccion/:ID", "POST", "TransaccionesController", "EditarTransaccion");
+    $r->addRoute("eliminar", "GET", "TransaccionesController", "EliminarTransaccion");
+    $r->addRoute("editar", "GET", "TransaccionesController", "FormularioEditarTransaccion");
+    $r->addRoute("editar", "POST", "TransaccionesController", "EditarTransaccion");
 
 
 
     //ESTADISTICAS
-
     $r->addRoute("estadisticas", "GET", "EstadisticasController", "VerTransaccionesPorFecha");
-    $r->addRoute("estadisticas/fecha/:DESDE/:HASTA", "GET", "EstadisticasController", "VerTransaccionesPorFecha");
+    $r->addRoute("estadisticas/fecha", "GET", "EstadisticasController", "VerTransaccionesPorFecha");
     $r->addRoute("estadisticas/fecha", "POST", "EstadisticasController", "VerTransaccionesPorFecha");
 
 
 
     // BILLETERAS
-
     $r->addRoute("billeteras", "GET", "BilleterasController", "Home");
-
     $r->addRoute("agregar/billetera", "POST", "BilleterasController", "AgregarBilletera");
-
     $r->addRoute("eliminar/billetera/:ID", "GET", "BilleterasController", "EliminarBilletera");
-
     $r->addRoute("editar/billetera/:ID", "GET", "BilleterasController", "GetBilletera");
-
     $r->addRoute("editar/billetera/:ID", "POST", "BilleterasController", "EditarBilletera");
 
-
-
     //Ruta por defecto.
-
     if (!isset($_SESSION["USUARIO"])){
 
     $r->setDefaultRoute("TransaccionesController", "InicioInvitado");

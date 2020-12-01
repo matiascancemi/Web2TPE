@@ -18,7 +18,7 @@
     <section id="services" class="services portfolio">
         <div class="container" data-aos="fade-up">
 
-        <form action="estadisticas/fecha" method="POST">
+        <form action="estadisticas/fecha" method="GET">
             <div class="row filtros">
             
                 <div class="col-lg-4 col-sm-1">
@@ -87,7 +87,13 @@
                         <tbody>
                             {foreach key=key from=$transacciones_s item=transaccion}
                                 <tr>
-                                    <th scope="row"><a href="ver/transaccion/{$transaccion->id_tns}"><div class="icono icono-{foreach from=$billeteras_s item=billetera}{if ({$transaccion->id_billetera}=={$billetera->id})}{$billetera->nombre|lower}{/if}{/foreach}"></a></th>
+                                    <th scope="row"><a href="transaccion?id={$transaccion->id_tns}">
+                                      {foreach from=$billeteras_s item=billetera}
+                                        {if ({$billetera->id}=={$transaccion->id_billetera})}
+                                          <img src="{$billetera->imagen}"/>
+                                        {/if}       
+                                      {/foreach}
+                                    </a></th>
                                     <td>{$transaccion->fecha_tns|date_format:"%d/%m/%Y"}</td>
                                     <td>{$transaccion->tipo_de_operacion}</td>
                                     <td>$ {$transaccion->saldo_enviar}</td>

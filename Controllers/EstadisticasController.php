@@ -40,24 +40,22 @@ class EstadisticasController {
 
     public function VerTransaccionesPorFecha($params = null){
         $this->checkLoggedIn();
-        if (isset($params[':ID'])){
-            $id_billetera = $params[':ID'];
-        }else if(isset($_POST['id_billetera'])&&($_POST['id_billetera']!=0)){
-            $id_billetera = $_POST['id_billetera'];
+        if(isset($_GET['id_billetera'])&&($_GET['id_billetera']!=0)){
+            $id_billetera = $_GET['id_billetera'];
         }
         else{
             $id_billetera = null;
         }
-        if (isset($params[':DESDE'])){
-            $desde = date("Y-m-d", strtotime($params[':DESDE']));
+        if (isset($_GET['desde'])){
+            $desde = date("Y-m-d", strtotime($_GET['desde']));
         }else if(isset($_POST['desde'])){
             $desde= date("Y-m-d", strtotime($_POST['desde']));;
         }else{
             $fecha_actual = date("Y-m-d");
             $desde = date("Y-m-d",strtotime($fecha_actual));
         }
-        if (isset($params[':HASTA'])){
-            $hasta = date("Y-m-d", strtotime($params[':HASTA']));
+        if (isset($_GET['hasta'])){
+            $hasta = date("Y-m-d", strtotime($_GET['hasta']));
         }else if(isset($_POST['hasta'])){
             $hasta= date("Y-m-d", strtotime($_POST['hasta']));;
         }else{

@@ -53,8 +53,8 @@
                   <td>{$usuario->apellido}</td>
                   <td>{$usuario->email}</td>
                   <td>{$usuario->usuario}</td>
-                  <td>{if ({$usuario->rol} == 1)}Usuario <a href="usuarios/admin/{$usuario->id_adm}" title="Convertir en Administrador"><i class="fas fa-user-shield"></i></a>{else}Administrador <a href="usuarios/admin/{$usuario->id_adm}" title="Convertir en Usuario"><i class="fas fa-user"></i></a>{/if}</td>
-                  <td><a href="usuarios/eliminar/{$usuario->id_adm}" title="Eliminar Usuario"><i class="fas fa-window-close"></i></a></td>
+                  <td>{if ({$usuario->rol} == 1)}Usuario <a href="usuarios/admin?id={$usuario->id_adm}" title="Convertir en Administrador"><i class="fas fa-user-shield"></i></a>{else}Administrador <a href="usuarios/admin?id={$usuario->id_adm}" title="Convertir en Usuario"><i class="fas fa-user"></i></a>{/if}</td>
+                  <td><a href="usuarios/eliminar?id={$usuario->id_adm}" title="Eliminar Usuario"><i class="fas fa-window-close"></i></a></td>
                 </tr>
               {/foreach}
               </table>
