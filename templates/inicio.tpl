@@ -52,6 +52,56 @@
       </div>
     </section>
 
+    <section>
+    <div class="row transacciones contact">
+
+    {foreach key=key from=$transacciones_s item=transaccion}
+
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
+
+              <div class="info">
+
+
+                <a href="ver/transaccion/{$transaccion->id_tns}"><div class="icono icono-{foreach from=$billeteras_s item=billetera}{if ({$transaccion->id_billetera}=={$billetera->id})}{$billetera->nombre|lower}{/if}{/foreach}"></div></a>
+
+                  <div><h6>Usuario:</h6> <span>{$transaccion->usuario}</span></div>
+
+                  <div><h6>Fecha</h6> <span>{$transaccion->fecha_tns}</span></div>
+
+                  <div><h6>Tipo de Operación</h6> <span>{$transaccion->tipo_de_operacion}</span></div>
+
+                {if ({$transaccion->moneda})}<div><h6>Moneda</h6> <span>
+
+                  {foreach from=$monedas_s item=moneda}
+
+                  {if ({$transaccion->moneda}=={$moneda->id})}{$moneda->nombre} ({$moneda->iso}){/if}
+
+                {/foreach}
+
+                </span></div>{/if}
+
+                <div><h6>Saldo Enviado</h6> <span>{$transaccion->saldo_enviar}</span></div>
+
+                <div><h6>Saldo Recibido</h6> <span>{$transaccion->saldo_recibir}</span></div>
+
+                <div><h6>Tipo de Cambio</h6> <span>{$transaccion->tipo_cambio}</span></div>
+
+                {if ({$transaccion->valor_de_moneda}> 0)}<div><h6>Valor de Moneda Real</h6> <span>{$transaccion->valor_de_moneda}</span></div>{/if}
+
+                <div class="{if ({$transaccion->ganancia}<=0)}perdida{else}ganancia{/if}"><h6>{if ({$transaccion->ganancia}< 0)}Perdida:{elseif ({$transaccion->ganancia}==0)}No aplica{else}Ganancia:{/if}</h6> </span>{if ({$transaccion->ganancia}!=0)} $ {$transaccion->ganancia|string_format:"%.2f"}{/if}</span></div>
+
+                <div class="btn-detalles"><a href="ver/transaccion/{$transaccion->id_tns}" class="btn btn-primary">Detalles</a></div>
+
+              </div>
+
+            </div>
+
+      {/foreach}
+
+    </div>
+
+    </section>
+
 
     <section id="why-us" class="why-us section-bg">
     <div class="container-fluid aos-init aos-animate" data-aos="fade-up">

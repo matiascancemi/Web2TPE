@@ -25,13 +25,6 @@ class AdministradoresView{
 
     }
 
-    function Inicio(){
-        $smarty = new Smarty();
-        $smarty->assign('titulo_s', $this->inicio);
-        $smarty->display('templates/inicio.tpl'); // muestro el template 
-
-    }
-
     function CrearUsuario($mensaje = ""){
         $smarty = new Smarty();
         $smarty->assign('titulo_s', $this->title);

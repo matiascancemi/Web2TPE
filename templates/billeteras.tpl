@@ -22,7 +22,6 @@
                 {foreach from=$billeteras_s item=billetera}
                     <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0 pricing" data-aos="zoom-in" data-aos-delay="200">
                         <div class="info">
-                            <div class="icono icono-{$billetera->nombre|lower}"></div>
                             {if isset($billetera->imagen)}
                                 <img src="{$billetera->imagen}"/>
                             {/if}                        

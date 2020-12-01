@@ -50,10 +50,17 @@ class BilleterasModel {
   }
 
 
-  function EditarBilletera($id,$nombre,$comision_unica,$comision_porcentual,$comision_minima){
-    $sentencia = $this->db->prepare("UPDATE billetera SET nombre=?,comision_unica=?,comision_porcentual=?,comision_minima=? WHERE id=?");
-    $sentencia->execute(array($nombre,$comision_unica,$comision_porcentual,$comision_minima,$id));
-}  
+  function EditarBilletera($id,$nombre,$comision_unica,$comision_porcentual,$comision_minima,$imagen = null){
+    $pathImg = null;
+        if ($imagen){
+            $pathImg = $this->uploadImage($imagen);
+            $sentencia = $this->db->prepare("UPDATE billetera SET nombre=?,comision_unica=?,comision_porcentual=?,comision_minima=?,imagen=? WHERE id=?");
+            $sentencia->execute(array($nombre,$comision_unica,$comision_porcentual,$comision_minima,$pathImg,$id));
+        }else{
+            $sentencia = $this->db->prepare("UPDATE billetera SET nombre=?,comision_unica=?,comision_porcentual=?,comision_minima=?,imagen=? WHERE id=?");
+            $sentencia->execute(array($nombre,$comision_unica,$comision_porcentual,$comision_minima,$imagen,$id));
+        }
+    }
 
 
     public function AgregarBilletera($nombre,$comision_unica,$comision_porcentual,$comision_minima, $imagen = null){

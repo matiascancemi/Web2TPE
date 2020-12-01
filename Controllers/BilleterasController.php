@@ -77,7 +77,18 @@ class BilleterasController {
 
         $billetera_id = $params[':ID'];
 
-        $this->model->EditarBilletera($billetera_id, $_POST['nombre'],$_POST['comision_unica'],$_POST['comision_porcentual'],$_POST['comision_minima']);
+        if (isset($_POST['eliminarimagen'])){
+            $imagen = NULL;
+        }else{
+            if($_FILES['input_name']['type'] == "image/jpg" || $_FILES['input_name']['type'] == "image/jpeg" 
+            || $_FILES['input_name']['type'] == "image/png" ){
+                $imagen = $_FILES['input_name']['tmp_name'];
+            }else{
+                $imagen = $_POST['imagen'];
+            }
+        }
+
+        $this->model->EditarBilletera($billetera_id, $_POST['nombre'],$_POST['comision_unica'],$_POST['comision_porcentual'],$_POST['comision_minima'],$imagen);
 
         header("Location: " . BASE_URL . "billeteras");
 

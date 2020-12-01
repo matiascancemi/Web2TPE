@@ -43,6 +43,7 @@
      }else{
         $r->addRoute("transacciones", "GET", "TransaccionesController", "Home");
      }
+     $r->addRoute("transacciones/todas", "GET", "TransaccionesController", "VerTodasLasTransacciones");
     $r->addRoute("transacciones/billetera/:ID", "GET", "TransaccionesController", "VerTransaccionPorBilletera");
     $r->addRoute("ver/transaccion/:ID", "GET", "TransaccionesController", "VerTransaccion");
     $r->addRoute("agregar/transaccion", "POST", "TransaccionesController", "AgregarTransaccion");
@@ -78,7 +79,7 @@
 
     if (!isset($_SESSION["USUARIO"])){
 
-    $r->setDefaultRoute("AdministradoresController", "Inicio");
+    $r->setDefaultRoute("TransaccionesController", "InicioInvitado");
 
     }else{
      if (($_SESSION["ROL"])==0){

@@ -16,6 +16,13 @@ class TransaccionesController {
     }
 
 
+    function InicioInvitado(){
+        $transacciones = $this->model->UltimasTransacciones();
+        $billeteras = $this->model1->GetBilleteras();
+        $monedas = $this->model1->GetMonedas();
+        $this->view->InicioInvitado($transacciones, $billeteras, $monedas);
+    }
+
     function Home($params = null){
         $this->checkLoggedIn();
         if (isset($params[':ID'])){
@@ -40,7 +47,19 @@ class TransaccionesController {
         $billeteras = $this->model1->GetBilleteras();
         $monedas = $this->model1->GetMonedas();
         $this->view->ShowHome($transacciones, $billeteras, $id_billetera, $monedas);
-    }    
+    }   
+    
+    function VerTodasLasTransacciones($params = null){
+        if (isset($params[':ID'])){
+            $id_billetera = $params[':ID'];
+        }else{
+            $id_billetera = null;
+        }
+        $transacciones = $this->model->GetTransaccionesAdmin();
+        $billeteras = $this->model1->GetBilleteras();
+        $monedas = $this->model1->GetMonedas();
+        $this->view->TransaccionesInvitado($transacciones, $billeteras, $id_billetera, $monedas);
+    }       
 
 
 
@@ -54,25 +73,12 @@ class TransaccionesController {
     }   
 
     public function VerTransaccion($params = null){
-        $this->checkLoggedIn();
+        //$this->checkLoggedIn();
         $Transaccion_id = $params[':ID'];
-        $id_usuario = $_SESSION["ID"];
-        $rol = $_SESSION["ROL"];
-        if ($rol == 0){
-            $transaccion = $this->model->GetTransaccionAdmin($Transaccion_id);
-            $billeteras = $this->model1->GetBilleteras();
-            $monedas = $this->model1->GetMonedas();
-            $this->view->MostrarTransaccion($transaccion, $billeteras, $monedas);
-        }else{
-            if ($this->model->GetTransaccion($Transaccion_id, $id_usuario)){
-                $transaccion = $this->model->GetTransaccion($Transaccion_id, $id_usuario);
-                $billeteras = $this->model1->GetBilleteras();
-                $monedas = $this->model1->GetMonedas();
-                $this->view->MostrarTransaccion($transaccion, $billeteras, $monedas);
-            }else{
-                header("Location: ". BASE_URL . "home");
-            }
-        }
+        $transaccion = $this->model->GetTransaccionAdmin($Transaccion_id);
+        $billeteras = $this->model1->GetBilleteras();
+        $monedas = $this->model1->GetMonedas();
+        $this->view->MostrarTransaccion($transaccion, $billeteras, $monedas);
     }
 
     

@@ -107,12 +107,6 @@ class AdministradoresController {
         $this->view->ShowLogin();
     }
 
-    function Inicio(){
-        $this->view->Inicio();
-    }
-
-
-
     function Logout(){
         session_destroy();
         header("Location: " . BASE_URL);

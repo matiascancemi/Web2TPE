@@ -13,6 +13,13 @@ class TransaccionesModel
         $this->db = new PDO('mysql:host=' . $localhost . ';dbname=' . $name . ';charset=utf8', $user, $pass);
     }
 
+    public function UltimasTransacciones()
+    {
+        $sentencia = $this->db->prepare("SELECT * FROM transaccion INNER JOIN usuarios ON transaccion.id_usuario = usuarios.id_adm INNER JOIN comentarios ON comentarios.id_tns = transaccion.id_tns");
+        $sentencia->execute(array());
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+
     public function GetTransacciones($usuario)
     {
         $sentencia = $this->db->prepare("SELECT * FROM transaccion WHERE id_usuario = ? ORDER BY id_tns DESC");

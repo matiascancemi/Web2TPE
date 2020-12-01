@@ -35,7 +35,7 @@
                 <a href="editar/transaccion/{$transaccion->id_tns}"  class="buy-btn">eDITAR</a>
                 {/if}
                 <div class="lista-comentarios">
-                  <h4><a href="#" data-toggle="modal" data-target=".agregar-comentario" class="boton-agregar-comentario">Agregar Comentario</a></h4>
+              {if isset($smarty.session.USUARIO)}<h4><a href="#" data-toggle="modal" data-target=".agregar-comentario" class="boton-agregar-comentario">Agregar Comentario</a></h4>{/if}
                   <ul class="comentarios">
                   </ul>
                 </div>
