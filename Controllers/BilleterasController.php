@@ -52,10 +52,10 @@ class BilleterasController {
         $this->checkLoggedInAdmin();
         if($_FILES['input_name']['type'] == "image/jpg" || $_FILES['input_name']['type'] == "image/jpeg" 
                 || $_FILES['input_name']['type'] == "image/png" ) {
-                    $this->model->AgregarBilletera($_POST['nombre'],$_POST['comision_unica'],$_POST['comision_porcentual'],$_POST['comision_minima'], $_FILES['input_name']['tmp_name']);
+                    $this->model->AgregarBilleteraConImagen($_POST['nombre'],$_POST['comision_unica'],$_POST['comision_porcentual'],$_POST['comision_minima'], $_FILES['input_name']['tmp_name']);
         }
         else {
-                $this->model->AgregarBilletera($_POST['nombre'],$_POST['comision_unica'],$_POST['comision_porcentual'],$_POST['comision_minima']);
+                $this->model->AgregarBilleteraSinImagen($_POST['nombre'],$_POST['comision_unica'],$_POST['comision_porcentual'],$_POST['comision_minima']);
         }
 
         header("Location: " . BASE_URL . "billeteras");
@@ -72,6 +72,7 @@ class BilleterasController {
 
         if (isset($_POST['eliminarimagen'])){
             $imagen = NULL;
+            $this->model->EditarBilleteraQuitarImagen($billetera_id, $_POST['nombre'],$_POST['comision_unica'],$_POST['comision_porcentual'],$_POST['comision_minima'],$imagen);
         }else{
             if($_FILES['input_name']['type'] == "image/jpg" || $_FILES['input_name']['type'] == "image/jpeg" 
             || $_FILES['input_name']['type'] == "image/png" ){
@@ -79,9 +80,8 @@ class BilleterasController {
             }else{
                 $imagen = $_POST['imagen'];
             }
+            $this->model->EditarBilletera($billetera_id, $_POST['nombre'],$_POST['comision_unica'],$_POST['comision_porcentual'],$_POST['comision_minima'],$imagen);
         }
-
-        $this->model->EditarBilletera($billetera_id, $_POST['nombre'],$_POST['comision_unica'],$_POST['comision_porcentual'],$_POST['comision_minima'],$imagen);
 
         header("Location: " . BASE_URL . "billeteras");
 

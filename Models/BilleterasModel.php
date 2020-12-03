@@ -52,28 +52,27 @@ class BilleterasModel {
 
   function EditarBilletera($id,$nombre,$comision_unica,$comision_porcentual,$comision_minima,$imagen = null){
     $pathImg = null;
-        if ($imagen){
             $pathImg = $this->uploadImage($imagen);
             $sentencia = $this->db->prepare("UPDATE billetera SET nombre=?,comision_unica=?,comision_porcentual=?,comision_minima=?,imagen=? WHERE id=?");
             $sentencia->execute(array($nombre,$comision_unica,$comision_porcentual,$comision_minima,$pathImg,$id));
-        }else{
+        }
+
+        function EditarBilleteraQuitarImagen($id,$nombre,$comision_unica,$comision_porcentual,$comision_minima,$imagen = null){
             $sentencia = $this->db->prepare("UPDATE billetera SET nombre=?,comision_unica=?,comision_porcentual=?,comision_minima=?,imagen=? WHERE id=?");
             $sentencia->execute(array($nombre,$comision_unica,$comision_porcentual,$comision_minima,$imagen,$id));
         }
-    }
 
 
-    public function AgregarBilletera($nombre,$comision_unica,$comision_porcentual,$comision_minima, $imagen = null){
-        $pathImg = null;
-        if ($imagen){
+    public function AgregarBilleteraConImagen($nombre,$comision_unica,$comision_porcentual,$comision_minima, $imagen = null){
             $pathImg = $this->uploadImage($imagen);
             $sentencia = $this->db->prepare("INSERT INTO billetera(nombre,comision_unica,comision_porcentual,comision_minima, imagen) VALUES(?,?,?,?,?)");
             $sentencia->execute(array($nombre,$comision_unica,$comision_porcentual,$comision_minima, $pathImg));
-        }else{
+        }
+    
+        public function AgregarBilleteraSinImagen($nombre,$comision_unica,$comision_porcentual,$comision_minima){
             $sentencia = $this->db->prepare("INSERT INTO billetera(nombre,comision_unica,comision_porcentual,comision_minima) VALUES(?,?,?,?)");
             $sentencia->execute(array([$nombre,$comision_unica,$comision_porcentual,$comision_minima]));
         }
-    }
 
     private function uploadImage($image){
         $target = 'imgs/' . uniqid() . '.jpg';
